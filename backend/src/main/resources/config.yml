@@ -1,104 +1,118 @@
 # Do not modify this value
+# 请勿修改此值
 config-version: '${config_version}'
 # Enables or disables debug mode
+# 启用或禁用调试模式
 debug: false
 # Enables or disables metrics collection via BStats
+# 启用或禁用通过 BStats 收集统计信息
 metrics: true
 # Enables automatic update checks
+# 启用自动更新检查
 update-checker: true
 # Forces a specific locale (e.g., zh_cn)
+# 强制使用特定的语言环境 (例如 zh_cn)
 force-locale: ''
 
 # Module Settings: Enable or disable specific features.
+# 模块设置: 启用或禁用特定功能
 modules:
-  nametags: true             # Enable name tags
-  nameplates: true           # Enable nameplates
-  backgrounds: true          # Enable background images for nameplates
-  bubbles: true              # Enable bubble text display
-  bossbars: true             # Enable bossbars
-  actionbars: false           # Enable actionbars
-  images: true               # Enable image displays
+  nametags: true             # Enable name tags (启用玩家名牌)
+  nameplates: true           # Enable nameplates (启用自定义名牌)
+  backgrounds: true          # Enable background images for nameplates (启用名牌背景图片)
+  bubbles: true              # Enable bubble text display (启用聊天气泡)
+  bossbars: true             # Enable bossbars (启用 Boss 栏)
+  actionbars: false           # Enable actionbars (启用快捷栏)
+  images: true               # Enable image displays (启用图片显示)
 
 # Plugin Integrations: Integrate resource packs and chat plugins with other plugins.
+# 插件集成: 将资源包和聊天插件与其他插件集成
 integrations:
   resource-pack:
-    # CraftEngine: false      # Deprecated, please use the `merge-external-folders` feature in CraftEngine
-    ItemsAdder: false         # Integration with ItemsAdder
-    ItemsAdder-old-method: false # Legacy integration with ItemsAdder
-    Oraxen: false             # Integration with Oraxen
-    Nexo: false               # Integration with Nexo
-    Creative-Central: false   # Integration with Creative-Central
+    # CraftEngine: false      # Deprecated, please use the `merge-external-folders` feature in CraftEngine (已弃用，请使用 CraftEngine 的 `merge-external-folders` 功能)
+    ItemsAdder: false         # Integration with ItemsAdder (与 ItemsAdder 集成)
+    ItemsAdder-old-method: false # Legacy integration with ItemsAdder (与 ItemsAdder 的旧版集成方式)
+    Oraxen: false             # Integration with Oraxen (与 Oraxen 集成)
+    Nexo: false               # Integration with Nexo (与 Nexo 集成)
+    Creative-Central: false   # Integration with Creative-Central (与 Creative-Central 集成)
   chat:
-    TrChat: false             # Integration with TrChat
-    VentureChat: false        # Integration with VentureChat
-    HuskChat: false           # Integration with HuskChat
-    CarbonChat: false         # Integration with CarbonChat
-    AdvancedChat: false       # Integration with AdvancedChat
-    Essentials: false         # Integration with Essentials chat
-    ChatControlRed: false     # Integration with ChatControlRed
-    Chatty: false             # Integration with Chatty
-    ZelChat: false            # Integration with ZelChat
+    TrChat: false             # Integration with TrChat (与 TrChat 集成)
+    VentureChat: false        # Integration with VentureChat (与 VentureChat 集成)
+    HuskChat: false           # Integration with HuskChat (与 HuskChat 集成)
+    CarbonChat: false         # Integration with CarbonChat (与 CarbonChat 集成)
+    AdvancedChat: false       # Integration with AdvancedChat (与 AdvancedChat 集成)
+    Essentials: false         # Integration with Essentials chat (与 Essentials 聊天集成)
+    ChatControlRed: false     # Integration with ChatControlRed (与 ChatControlRed 集成)
+    Chatty: false             # Integration with Chatty (与 Chatty 集成)
+    ZelChat: false            # Integration with ZelChat (与 ZelChat 集成)
   # Let typewriter take over actionbar on certain events
+  # 允许 Typewriter 插件在特定事件时接管 Actionbar
   typewriter:
     dialogue: true
     cinematic: true
 
 # Resource Pack Generation Settings: Configure resource pack generation behavior.
+# 资源包生成设置: 配置资源包生成的行为
 resource-pack:
-  disable-generation-on-start: false  # Allow resource pack generation at server start
+  disable-generation-on-start: false  # Allow resource pack generation at server start (允许在服务器启动时生成资源包)
   supported-version:
     # You can specify a version like 1.20.2, 1.21.4 or use SERVER_VERSION
+    # 你可以指定一个特定版本，如 1.20.2, 1.21.4，或使用 SERVER_VERSION (自动获取服务器版本)
     min: "SERVER_VERSION"
-  namespace: "nameplates"             # Namespace for the resource pack
-  font: "default"                     # Default font used
-  initial-char: '뀁'                  # Starting character for custom fonts (won't affect Korean characters in chat)
-  image-path:                         # Paths for different assets
-    nameplates: 'font/nameplates/'    # Path for nameplates assets
-    backgrounds: 'font/backgrounds/'  # Path for background images
-    images: 'font/images/'            # Path for other images
-    bubbles: 'font/bubbles/'          # Path for bubble text images
-    space-split: 'font/base/'         # Path for base font images
+  namespace: "nameplates"             # Namespace for the resource pack (资源包命名空间)
+  font: "default"                     # Default font used (使用的默认字体)
+  initial-char: '뀁'                  # Starting character for custom fonts (won't affect Korean characters in chat) (自定义字体的起始字符，不会影响聊天中的韩文字符)
+  image-path:                         # Paths for different assets (不同资源的路径)
+    nameplates: 'font/nameplates/'    # Path for nameplates assets (名牌资源路径)
+    backgrounds: 'font/backgrounds/'  # Path for background images (背景图片路径)
+    images: 'font/images/'            # Path for other images (其他图片路径)
+    bubbles: 'font/bubbles/'          # Path for bubble text images (聊天气泡图片路径)
+    space-split: 'font/base/'         # Path for base font images (基础字体图片路径)
   # Using shader is dangerous and might conflict with other plugin
   # It's recommended to disable shaders on a 1.21.4+ server
+  # 使用着色器(Shader)存在风险，可能与其他插件冲突，建议在 1.21.4+ 服务器上禁用着色器
   shader:
-    enable: true                      # Enable shader generation
-    hide-scoreboard-number: false     # Hiding of scoreboard numbers
-    animated-text: false              # Animated text shaders
-    ItemsAdder-text-effects: false    # ItemsAdder text effects support
+    enable: true                      # Enable shader generation (启用着色器生成)
+    hide-scoreboard-number: false     # Hiding of scoreboard numbers (隐藏计分板红字数字)
+    animated-text: false              # Animated text shaders (启用动画文本着色器)
+    ItemsAdder-text-effects: false    # ItemsAdder text effects support (支持 ItemsAdder 的文本特效)
   transparent-bossbar:
-    color: YELLOW                     # BossBar color to remove
-    "1_20_2+": true                   # Enable transparent bossbar for Minecraft 1.20.2+
-    "1_17-1_20_1": true               # Enable transparent bossbar for Minecraft 1.17-1.20.1
-  legacy-unicodes: true               # Enable legacy Unicode support for Minecraft 1.20+ (increases resource pack size by 900KB)
+    color: YELLOW                     # BossBar color to remove (需要移除背景的 Boss 栏颜色)
+    "1_20_2+": true                   # Enable transparent bossbar for Minecraft 1.20.2+ (为 1.20.2+ 启用透明 Boss 栏)
+    "1_17-1_20_1": true               # Enable transparent bossbar for Minecraft 1.17-1.20.1 (为 1.17-1.20.1 启用透明 Boss 栏)
+  legacy-unicodes: true               # Enable legacy Unicode support for Minecraft 1.20+ (increases resource pack size by 900KB) (为 1.20+ 启用旧版 Unicode 支持，增加 900KB 资源包大小)
 
 # Additional Settings: Extra options to control behavior and performance.
+# 附加设置: 控制插件行为和性能的额外选项
 other-settings:
-  legacy-color-code-support: true     # Enable support for legacy color codes using &
-  send-delay: 20                      # Set actionbar/bossbar send delay (ticks)  (0 = send immediately on async threads, -1 = send immediately on main thread)
-  catch-other-plugin-actionbar: true  # Capture actionbars from other plugins
-  other-actionbar-stay-time: 3000     # How long does other actionsbars stay (ms)
-  display-system-actionbar: true      # Should the plugin display system actionbar and temporarily hide the custom actionbar?
-  hide-team-names: true               # Hide the team name sent by other plugins or vanilla team system
-  unsafe-chat-event: false            # Listen for canceled(unsafe) chat events from unknown plugins
-  strip-chat-color-tags: false        # Strip color codes from messages provided by external chat API
-  default-condition-refresh-interval: 10  # Set default condition refresh interval in ticks
-  default-placeholder-refresh-interval: 1  # Set default placeholder refresh interval in ticks
-  force-update-passenger-interval: -1 # Some plugin/servers may cause nameplates to become out of sync. This option allows you to set the interval for forcibly syncing tag positions.
-  placeholder-refresh-interval:       # Custom placeholder refresh intervals for performance optimization
+  legacy-color-code-support: true     # Enable support for legacy color codes using & (启用使用 & 符号的旧版颜色代码支持)
+  send-delay: 20                      # Set actionbar/bossbar send delay (ticks)  (0 = send immediately on async threads, -1 = send immediately on main thread) (设置 actionbar/bossbar 的发送延迟 ticks)
+  catch-other-plugin-actionbar: true  # Capture actionbars from other plugins (捕获其他插件的 actionbar)
+  other-actionbar-stay-time: 3000     # How long does other actionsbars stay (ms) (其他 actionbar 的停留时间，毫秒)
+  display-system-actionbar: true      # Should the plugin display system actionbar and temporarily hide the custom actionbar? (插件是否应显示系统 actionbar 并暂时隐藏自定义 actionbar？)
+  hide-team-names: true               # Hide the team name sent by other plugins or vanilla team system (隐藏其他插件或原版计分板队伍系统发送的玩家名称)
+  unsafe-chat-event: false            # Listen for canceled(unsafe) chat events from unknown plugins (监听来自未知插件的被取消(不安全)的聊天事件)
+  strip-chat-color-tags: false        # Strip color codes from messages provided by external chat API (剥离由外部聊天 API 提供的消息中的颜色代码)
+  default-condition-refresh-interval: 10  # Set default condition refresh interval in ticks (设置默认的条件刷新间隔，以 ticks 为单位)
+  default-placeholder-refresh-interval: 1  # Set default placeholder refresh interval in ticks (设置默认的占位符刷新间隔，以 ticks 为单位)
+  force-update-passenger-interval: -1 # Some plugin/servers may cause nameplates to become out of sync. This option allows you to set the interval for forcibly syncing tag positions. (强制同步标签位置的间隔，-1 为禁用。用于修复某些服务端名牌不同步的问题)
+  placeholder-refresh-interval:       # Custom placeholder refresh intervals for performance optimization (自定义占位符刷新间隔，用于性能优化)
     "%player_name%": 100
     "%vault_prefix%": 20
   # Font Templates: Define different fonts and their settings.
   # Requires a restart to apply because it can be laggy to read thousands of character
+  # 字体模板: 定义不同的字体及其设置
+  # 需要重启服务器以应用，因为读取数千个字符可能会导致卡顿
   font-templates:
     space:
       space:
-        " ": 4                        # Define space width as 4 units
-        "\\u200c": 0                  # Define zero-width non-joiner as 0 width
+        " ": 4                        # Define space width as 4 units (定义空格宽度为 4 单位)
+        "\\u200c": 0                  # Define zero-width non-joiner as 0 width (定义零宽非连接符的宽度为 0)
     unihex:
       unifont:
-        file: unifont.zip             # Load font from unifont.zip
-        generate: false               # Should this unihex file be included in the generated pack
-        size_overrides:               # Override size for specific Unicode ranges
+        file: unifont.zip             # Load font from unifont.zip (从 unifont.zip 加载字体)
+        generate: false               # Should this unihex file be included in the generated pack (是否将此 unihex 文件包含在生成的资源包中)
+        size_overrides:               # Override size for specific Unicode ranges (覆盖特定 Unicode 范围的字体大小)
           - from: "\\u3001"
             to: "\\u30FF"
             left: 0
@@ -136,10 +150,10 @@ other-settings:
             left: 0
             right: 15
       unifont_jp:
-        file: unifont_jp.zip          # Load Japanese unifont
-        generate: false               # Should this unihex file be included in the generated pack
+        file: unifont_jp.zip          # Load Japanese unifont (加载日文 unifont)
+        generate: false               # Should this unihex file be included in the generated pack (是否包含在生成的资源包中)
         filter:
-          "jp": true                  # Apply to Japanese characters only
+          "jp": true                  # Apply to Japanese characters only (仅应用于日文字符)
         size_overrides:
           - from: "\\u3200"
             to: "\\u9FFF"
@@ -151,12 +165,12 @@ other-settings:
             right: 15
     bitmap:
       ascii:
-        codepoints: ascii             # Define ASCII bitmap font
-        file: ascii.png               # Use ascii.png file for the font
-        height: 8                     # Font height is 8 units
-        custom: false                 # Does this png path point to a non-default font path??
-        generate: false               # Should this png file be included in the generated pack
-        # namespace: custom           # Optional namespace if you don't want to use the global namespace set in config.yml
+        codepoints: ascii             # Define ASCII bitmap font (定义 ASCII 位图字体)
+        file: ascii.png               # Use ascii.png file for the font (使用 ascii.png 作为字体文件)
+        height: 8                     # Font height is 8 units (字体高度为 8 单位)
+        custom: false                 # Does this png path point to a non-default font path?? (此 png 路径是否指向非默认字体路径？)
+        generate: false               # Should this png file be included in the generated pack (是否包含在生成的资源包中)
+        # namespace: custom           # Optional namespace if you don't want to use the global namespace set in config.yml (可选的命名空间，如果您不想使用 config.yml 中设置的全局命名空间)
       ascii_sga:
         codepoints: ascii_sga
         file: ascii_sga.png
@@ -179,21 +193,21 @@ other-settings:
         custom: false
     legacy_unicode:
       legacy_unicode:
-        file: unicode_page_%02x.png   # Legacy Unicode characters page file
-        height: 8                     # Set height to 8 units
+        file: unicode_page_%02x.png   # Legacy Unicode characters page file (旧版 Unicode 字符页面文件)
+        height: 8                     # Set height to 8 units (设置高度为 8 单位)
         custom: false
     unicode:
       unicode:
-        file: unicode_page_%02x.png   # Default Unicode characters
-        sizes: glyph_sizes.bin        # Glyph size configuration
+        file: unicode_page_%02x.png   # Default Unicode characters (默认 Unicode 字符)
+        sizes: glyph_sizes.bin        # Glyph size configuration (字形大小配置)
     ttf: {}
 #    ttf:
 #      example:
-#        generate: false               # Should this TTF file be included in the generated pack
-#        file: example.ttf             # Define the TTF file to load the font from
-#        size: 10.0                    # Set font size
-#        oversample: 8.0               # Oversample rate for TTF rendering
-#        skip: []                      # Skipped characters in list format
+#        generate: false               # Should this TTF file be included in the generated pack (是否包含在生成的资源包中)
+#        file: example.ttf             # Define the TTF file to load the font from (定义要加载字体的 TTF 文件)
+#        size: 10.0                    # Set font size (设置字体大小)
+#        oversample: 8.0               # Oversample rate for TTF rendering (TTF 渲染的超采样率)
+#        skip: []                      # Skipped characters in list format (以列表格式跳过的字符)
   shift-fonts:
     shift_0:
       - space

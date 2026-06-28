@@ -1,19 +1,22 @@
 config-version: '${config_version}'
 
 # file:
+# 文件:
 #   JSON
 #   YAML
 #
 # local database:
+# 本地数据库:
 #   SQLite
-#   H2 (preferred over SQLite)
+#   H2 (preferred over SQLite / 优先于 SQLite)
 #
 # remote database:
+# 远程数据库:
 #   MySQL
-#   MariaDB (preferred over MySQL)
+#   MariaDB (preferred over MySQL / 优先于 MySQL)
 #   MongoDB
 #
-data-storage-method: H2 # `NONE` if you want to disable data storage
+data-storage-method: H2 # `NONE` if you want to disable data storage / 若想禁用数据存储请填 `NONE`
 
 SQLite:
   file: 'sqlite'
@@ -60,12 +63,15 @@ MongoDB:
   password: ''
   database: 'minecraft'
   # If this section is not empty, it would override the configs above
+  # 如果此项不为空，它将覆盖上方的连接配置
   # https://www.mongodb.com/docs/manual/reference/connection-string/
   connection-uri: ''
   collection-prefix: nameplates
 
 # Redis is optional if you are using remote database
+# Redis 对于使用远程数据库是可选的 (主要用于跨服实时同步)
 # If you do not know how to use Redis, please do not enable it
+# 如果您不知道如何使用 Redis，请不要启用它
 Redis:
   enable: false
   host: localhost

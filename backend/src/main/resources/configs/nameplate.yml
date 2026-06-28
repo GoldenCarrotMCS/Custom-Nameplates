@@ -1,8 +1,12 @@
 # Do not modify this value
+# 请勿修改此值
 config-version: '${config_version}'
 # https://mo-mi.gitbook.io/xiaomomi-plugins/plugin-wiki/customnameplates/config/nameplate.yml
+# 预览名牌的持续时间 (秒)
 preview-duration: 5
+# 默认名牌配置
 default-nameplate: 'none'
+# 是否始终在第一人称显示自己的名牌
 always-show: false
 nameplate:
   prefix: '%np_switch_nameplate_color_prefix%'

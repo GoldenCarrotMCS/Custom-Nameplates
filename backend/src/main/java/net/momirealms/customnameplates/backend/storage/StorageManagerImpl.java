@@ -50,21 +50,17 @@ public class StorageManagerImpl implements StorageManager, JoinQuitListener {
 		UUID uuid = player.uuid();
 		Executor async = plugin.getScheduler().async();
 		if (hasRedis) {
-			this.redisManager.getPlayerData(uuid, async).thenAccept(playerData1 -> {
-				if (playerData1.isPresent()) {
-					PlayerData data = playerData1.get();
-					((AbstractCNPlayer) player).setLoaded(true);
-					handleDataLoad(player, data);
-					plugin.getEventManager().dispatch(DataLoadEvent.class, data);
-					this.redisManager.updatePlayerData(data, async).thenAccept(result -> {
-						if (!result) {
-							plugin.getPluginLogger().warn("Failed to refresh redis player data for " + player.name());
+			this.redisManager.getPlayerData(uuid, async)
+					.thenCompose(playerData1 -> {
+						if (playerData1.isPresent()) {
+							return java.util.concurrent.CompletableFuture.completedFuture(playerData1);
+						} else {
+							return this.dataSource().getPlayerData(uuid, async);
 						}
-					});
-				} else {
-					this.dataSource().getPlayerData(uuid, async).thenAccept(playerData2 -> {
-						if (playerData2.isPresent()) {
-							PlayerData data = playerData2.get();
+					})
+					.thenAccept(playerData -> {
+						if (playerData.isPresent()) {
+							PlayerData data = playerData.get();
 							((AbstractCNPlayer) player).setLoaded(true);
 							handleDataLoad(player, data);
 							plugin.getEventManager().dispatch(DataLoadEvent.class, data);
@@ -77,8 +73,6 @@ public class StorageManagerImpl implements StorageManager, JoinQuitListener {
 							plugin.getPluginLogger().warn("Failed to load player data for " + player.name());
 						}
 					});
-				}
-			});
 		} else {
 			this.dataSource().getPlayerData(uuid, async).thenAccept(playerData -> {
 				if (playerData.isPresent()) {
@@ -197,7 +191,7 @@ public class StorageManagerImpl implements StorageManager, JoinQuitListener {
 			return GsonHelper.get().fromJson(json, JsonData.class).toPlayerData(uuid);
 		} catch (JsonSyntaxException e) {
 			plugin.getPluginLogger().severe("Failed to get PlayerData from json. Json: " + json);
-			throw new RuntimeException(e);
+			return PlayerData.empty(uuid);
 		}
 	}
 

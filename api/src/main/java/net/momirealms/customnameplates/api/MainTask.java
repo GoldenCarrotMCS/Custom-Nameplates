@@ -31,8 +31,9 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class MainTask implements Runnable {
     private static int RUN_TICKS = 0;
-    private static final Map<Integer, Integer> TIME_1 = new ConcurrentHashMap<>(2048);
-    private static final Map<Integer, Integer> TIME_2 = new ConcurrentHashMap<>(2048);
+    private static final int[] TIME_1 = new int[1200];
+    private static final int[] TIME_2 = new int[1200];
+    private static int size = 0;
     private static final Set<Integer> requestedSharedPlaceholders = Collections.synchronizedSet(new ObjectOpenHashSet<>());
     private int timer;
     private final CustomNameplates plugin;
@@ -71,6 +72,7 @@ public class MainTask implements Runnable {
      */
     public static void reset() {
         RUN_TICKS = 0;
+        size = 0;
     }
 
     @Override
@@ -90,11 +92,12 @@ public class MainTask implements Runnable {
             long time3 = System.nanoTime();
             plugin.actionBarManager.checkHeartBeats();
             int diff1 = (int) (time2 - time1);
-            TIME_1.put(timer, diff1);
+            TIME_1[timer] = diff1;
             int diff2 = (int) (time3 - time2);
-            TIME_2.put(timer, diff2);
+            TIME_2[timer] = diff2;
             timer++;
             if (timer >= 1200) timer = 0;
+            if (size < 1200) size++;
             if (RUN_TICKS < 0) {
                 CustomNameplates.getInstance().reload();
             }
@@ -109,19 +112,24 @@ public class MainTask implements Runnable {
      * @return a HealthyProfile object containing the performance statistics
      */
     public static HealthyProfile getHealthyProfile() {
-        long total1 = TIME_1.values().stream().mapToLong(Integer::longValue).sum();
-        long total2 = TIME_2.values().stream().mapToLong(Integer::longValue).sum();
+        long total1 = 0;
+        long total2 = 0;
+        int currentSize = size == 0 ? 1 : size;
+        for (int i = 0; i < currentSize; i++) {
+            total1 += TIME_1[i];
+            total2 += TIME_2[i];
+        }
 
         long total = total1 + total2;
-        double size = TIME_1.size();
+        double s = currentSize;
 
-        double load = total / size / 50_000_000;
+        double load = total / s / 50_000_000;
 
         return new HealthyProfile(
                 load,
-                (long) (total / size),
-                (int) (total1 / size),
-                (int) (total2 / size)
+                (long) (total / s),
+                (int) (total1 / s),
+                (int) (total2 / s)
         );
     }
 

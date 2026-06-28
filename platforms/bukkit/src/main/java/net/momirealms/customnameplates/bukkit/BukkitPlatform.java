@@ -606,6 +606,8 @@ public class BukkitPlatform implements Platform {
         }
     }
 
+    private static final ThreadLocal<ArrayList<Object>> SHARED_DATA_LIST = ThreadLocal.withInitial(() -> new ArrayList<>(32));
+
     @Override
     public List<Object> createTextDisplayPacket(
             int entityID, UUID uuid,
@@ -621,8 +623,9 @@ public class BukkitPlatform implements Platform {
                     Reflections.instance$EntityType$TEXT_DISPLAY, 0, Reflections.instance$Vec3$Zero, headYaw
             );
 
-            // It's shit code
-            ArrayList<Object> values = new ArrayList<>();
+            // Using ThreadLocal to avoid memory allocations
+            ArrayList<Object> values = SHARED_DATA_LIST.get();
+            values.clear();
             EntityData.InterpolationDelay.addEntityDataIfNotDefaultValue(interpolationDelay,            values);
             if (VersionHelper.isVersionNewerThan1_20_2()) {
                 EntityData.PositionRotationInterpolationDuration.addEntityDataIfNotDefaultValue(positionRotationInterpolationDuration, values);
@@ -642,7 +645,7 @@ public class BukkitPlatform implements Platform {
             EntityData.Translation.addEntityDataIfNotDefaultValue(         translation.toVec3(),         values);
             EntityData.TextDisplayMasks.addEntityDataIfNotDefaultValue(EntityData.encodeMask(hasShadow, isSeeThrough, useDefaultBackgroundColor, alignment.getId()), values);
 
-            Object setDataPacket = Reflections.constructor$ClientboundSetEntityDataPacket.newInstance(entityID, values);
+            Object setDataPacket = Reflections.constructor$ClientboundSetEntityDataPacket.newInstance(entityID, new ArrayList<>(values));
 
             return List.of(addEntityPacket, setDataPacket);
         } catch (ReflectiveOperationException e) {
@@ -690,11 +693,13 @@ public class BukkitPlatform implements Platform {
     @Override
     public Object updateTextDisplayPacket(int entityID, List<Consumer<List<Object>>> modifiers) {
         try {
-            ArrayList<Object> values = new ArrayList<>();
+            ArrayList<Object> values = SHARED_DATA_LIST.get();
+            values.clear();
             for (Consumer<List<Object>> modifier : modifiers) {
                 modifier.accept(values);
             }
-            return Reflections.constructor$ClientboundSetEntityDataPacket.newInstance(entityID, values);
+
+            return Reflections.constructor$ClientboundSetEntityDataPacket.newInstance(entityID, new ArrayList<>(values));
         } catch (ReflectiveOperationException e) {
             throw new RuntimeException(e);
         }

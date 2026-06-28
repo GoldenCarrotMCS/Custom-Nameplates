@@ -5,9 +5,11 @@ config-version: "${config_version}"
 
 #
 # For safety reasons, editing this file requires a restart to apply
+# 出于安全原因，修改此文件需要重启服务器才能生效
 #
 
 # A command to reload the plugin
+# 重载插件的命令
 # Usage: [COMMAND]
 reload:
   enable: true
@@ -16,6 +18,7 @@ reload:
     - /nameplates reload
 
 # A command to debug the load of the cpu
+# 调试 CPU 负载的命令
 # Usage: [COMMAND]
 debug_performance:
   enable: true
@@ -24,6 +27,7 @@ debug_performance:
     - /nameplates debug performance
 
 # A command to debug the width
+# 调试字符宽度的命令
 # Usage: [COMMAND] [TEXT]
 debug_width:
   enable: true
@@ -32,6 +36,7 @@ debug_width:
     - /nameplates debug width
 
 # A command to debug the lines
+# 调试多行文本的命令
 # Usage: [COMMAND] [WIDTH] [TEXT]
 debug_lines:
   enable: true
@@ -40,6 +45,7 @@ debug_lines:
     - /nameplates debug lines
 
 # A command to force a player to equip the specified nameplate
+# 强制玩家装备指定名牌的命令
 # Usage: [COMMAND] [PLAYER] [NAMEPLATE]
 nameplates_force_equip:
   enable: true
@@ -48,6 +54,7 @@ nameplates_force_equip:
     - /nameplates force-equip
 
 # A command to force a player to unequip the current nameplate
+# 强制玩家卸下当前名牌的命令
 # Usage: [COMMAND] [PLAYER]
 nameplates_force_unequip:
   enable: true
@@ -56,6 +63,7 @@ nameplates_force_unequip:
     - /nameplates force-unequip
 
 # A command to force a player to preview the nameplate
+# 强制玩家预览名牌的命令
 # Usage: [COMMAND] [PLAYER]
 nameplates_force_preview:
   enable: true
@@ -64,6 +72,7 @@ nameplates_force_preview:
     - /nameplates force-preview
 
 # A command to equip the nameplate
+# 装备名牌的命令
 # Usage: [COMMAND] [NAMEPLATE]
 nameplates_equip:
   enable: true
@@ -72,6 +81,7 @@ nameplates_equip:
     - /nameplates equip
 
 # A command to unequip the nameplate
+# 卸下名牌的命令
 # Usage: [COMMAND]
 nameplates_unequip:
   enable: true
@@ -80,6 +90,7 @@ nameplates_unequip:
     - /nameplates unequip
 
 # A command to preview the nameplate
+# 预览名牌的命令
 # Usage: [COMMAND]
 nameplates_preview:
   enable: true
@@ -88,6 +99,7 @@ nameplates_preview:
     - /nameplates preview
 
 # A command to toggle the nameplate previewing
+# 切换名牌显示状态的命令
 # This command conflicts with `/nameplates preview`
 # You should never enable both of them at the same time
 # Usage: [COMMAND]
@@ -98,6 +110,7 @@ nameplates_toggle:
     - /nameplates toggle
 
 # A command to view the available nameplates
+# 查看可用名牌列表的命令
 # Usage: [COMMAND]
 nameplates_list:
   enable: true
@@ -106,6 +119,7 @@ nameplates_list:
     - /nameplates list
 
 # A command to force a player to equip the specified bubble
+# 强制玩家装备指定聊天气泡的命令
 # Usage: [COMMAND] [PLAYER] [BUBBLE]
 bubbles_force_equip:
   enable: true
@@ -114,6 +128,7 @@ bubbles_force_equip:
     - /bubbles force-equip
 
 # A command to force a player to unequip the current bubble
+# 强制玩家卸下当前聊天气泡的命令
 # Usage: [COMMAND] [PLAYER]
 bubbles_force_unequip:
   enable: true
@@ -122,6 +137,7 @@ bubbles_force_unequip:
     - /bubbles force-unequip
 
 # A command to equip the bubble
+# 装备聊天气泡的命令
 # Usage: [COMMAND] [BUBBLE]
 bubbles_equip:
   enable: true
@@ -130,6 +146,7 @@ bubbles_equip:
     - /bubbles equip
 
 # A command to unequip the bubble
+# 卸下聊天气泡的命令
 # Usage: [COMMAND]
 bubbles_unequip:
   enable: true
@@ -138,6 +155,7 @@ bubbles_unequip:
     - /bubbles unequip
 
 # A command to view the available bubbles
+# 查看可用聊天气泡列表的命令
 # Usage: [COMMAND]
 bubbles_list:
   enable: true
@@ -146,6 +164,7 @@ bubbles_list:
     - /bubbles list
 
 # A command to test some stuffs
+# 用于测试的命令
 # Usage: [COMMAND]
 debug_test:
   enable: true
